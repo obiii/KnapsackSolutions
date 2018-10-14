@@ -1,0 +1,20 @@
+Package: knapsack 
+Type: Package
+Title: Knapsack problem solutions Lab 6
+Version: 1.0
+Date: 2018-10-11
+Author: Obaid Ur Rehman(obaur539), Muhammad Habib(muhha866)
+Maintainer: Who to complain to <obaur539@liu.se>
+Description: Knapsack problem solved by different alogrithms.
+License: GPL-2
+LazyData: true
+r_github_packages:
+  - hadley/lineprof
+Depends: R (>= 3.1.0)
+Imports:
+    utils, combinat, parallel, microbenchmark
+Suggests:
+    testthat, knitr, rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.0
+
