@@ -1,12 +1,12 @@
 ## ------------------------------------------------------------------------
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 2000    # number of Items
+library(knapsack)
+set.seed(345) 
+n <- 3000   
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000)
 )
 
-head(knapsack_objects) #show number of rows of sample data 
+head(knapsack_objects) 
 
 ## ---- warning= FALSE, message= FALSE-------------------------------------
 brute_force_knapsack(knapsack_objects[1:8,], W = 3500)
@@ -15,12 +15,12 @@ brute_force_knapsack(knapsack_objects[1:8,], W = 3500)
 brute_force_knapsack(x = knapsack_objects[1:12,], W = 2000)
 
 ## ------------------------------------------------------------------------
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 16    # number of Items
+
+set.seed(42) 
+n <- 16  
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000))
-# time taken to run on n= 16 and W= 2000
+
 system.time(brute_force <- brute_force_knapsack(x = knapsack_objects[1:12,], W = 2000))
 
 ## ---- warning= FALSE, message= FALSE-------------------------------------
@@ -30,12 +30,11 @@ knapsack_dynamic(knapsack_objects[1:8,], W = 3500)
 knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000)
 
 ## ------------------------------------------------------------------------
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 500    # number of Items
+
+set.seed(42)
+n <- 500
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000))
-# time taken to run on n= 16 and W= 2000
 system.time(dynamic_result<- knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000))
 
 ## ---- warning= FALSE, message= FALSE-------------------------------------
@@ -45,12 +44,10 @@ greedy_knapsack(knapsack_objects[1:800,], W = 3500)
 greedy_knapsack(x = knapsack_objects[1:12,], W = 2000)
 
 ## ------------------------------------------------------------------------
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 1000000    # number of Items
+set.seed(42) 
+n <- 1000000  
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000))
-# time taken to run on n= 16 and W= 2000
 system.time(greedy_result <- greedy_knapsack(x = knapsack_objects[1:12,], W = 2000))
 
 ## ---- echo=TRUE----------------------------------------------------------

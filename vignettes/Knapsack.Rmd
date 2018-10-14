@@ -1,48 +1,51 @@
 ---
-title: "Knapscak problem solved by different Algorithms"
-author: "Saman and rabnawaz"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+title: "Package Knapsack"
+author: "Obaid Ur Rehman,Muhammad Habib"
+date: "October 2, 2018"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+  html_document:  
+    toc: true
+    toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{knapsack}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-we have created a new package on github to implement the `3 different alorithms to solve a knapsack problem`
 
-## What is `Kanpsack Problem` ?
-The knapsack problem is a discrete optimization problem where we have a knapsack that can take a limited `weight W `and we want to fill this knapsack with a   `number of items i = 1, ..., n,`   each with a `weight wi` and a `value vi`
-.The goal is to find the `knapsack with the largest value of the elements` added to the knapsack.This problem is `NP-hard, meaning that it is ”at least as hardas the hardest problem in NP”`
+A Package to solve knapsack problem using 3 different algorhitms.
+
+## Kanpsack Problem ?
+The knapsack problem is a discrete optimization problem where we have a knapsack that can take a limited **weight W** and we want to fill this knapsack with a   **number of items i = 1, ..., n,**  each with a **weight wi** and a **value vi**
+.The goal is to find the knapsack with the largest value of the elements added to the knapsack.This problem is `NP-hard, meaning that it is ”at least as hardas the hardest problem in NP”`
 ref: ([via](https://en.wikipedia.org/wiki/NP-hardness))
 
-## What is NP?
-NP is a (fundamental) class of problems for which there are (currently) no polynomial time algorithms to solve them.It is an open `(Millennium Prize)` problem, whether it is or is not possible to solve these problemsin polynomial time.
-`For a more detailed background of the knapsack problem see this page`
-([via](https://en.wikipedia.org/wiki/Knapsack)) problem.
 
 ## Three Different algorithms to solve a knapsack problem?
-- brute force knapsack `brute force knapsack(x,W, parallel  = FALSE)`
-- knapsack dynamic      `knapsack_dynamic(x,W)`    
-- greedy knapsack       `greedy_knapsack(x,W)`
+- brute force knapsack **brute force knapsack(x,W, parallel  = FALSE)**
+- knapsack dynamic      **knapsack_dynamic(x,W)**   
+- greedy knapsack       **greedy_knapsack(x,W)**
 
 
 ##Arugments 
 
-- `x` is data frame which has `w` as weight column and `v` as value of each weight item
-- `W` captial `W` is represent a knapscak capcaity that knapsack can carry
-- `parallel` which is only used in brute force search alogrithm if you want to run on mulitple core than set is as `TRUE`. The default value is set as `FALSE`
+- **x** is data frame which has **w** as weight column and **v** as value of each weight item
+- **W** captial **W** is represent a knapscak capcaity that knapsack can carry
+- **parallel** which is only used in brute force search alogrithm if you want to run on mulitple core than set is as **TRUE**. The default value is set as **FALSE**
 
 ##generate a data
 
 ```{r}
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 2000    # number of Items
+library(knapsack)
+set.seed(345) 
+n <- 3000   
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000)
 )
 
-head(knapsack_objects) #show number of rows of sample data 
+head(knapsack_objects) 
 ```
 
 ## brute_force_knapsack(x,W)
@@ -59,12 +62,12 @@ brute_force_knapsack(x = knapsack_objects[1:12,], W = 2000)
 ## How much time does it takes to run the algorithm for n = 16 objects?
 
 ```{r}
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 16    # number of Items
+
+set.seed(42) 
+n <- 16  
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000))
-# time taken to run on n= 16 and W= 2000
+
 system.time(brute_force <- brute_force_knapsack(x = knapsack_objects[1:12,], W = 2000))
 ```
 
@@ -82,12 +85,11 @@ knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000)
 ## How much time does it takes to run the algorithm for n = 500 objects?
 
 ```{r}
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 500    # number of Items
+
+set.seed(42)
+n <- 500
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000))
-# time taken to run on n= 16 and W= 2000
 system.time(dynamic_result<- knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000))
 ```
 
@@ -106,12 +108,10 @@ greedy_knapsack(x = knapsack_objects[1:12,], W = 2000)
 ## How much time does it takes to run the algorithm for n = 1000000 objects?
 
 ```{r}
-library(knapsack) #load our knapsack library
-set.seed(42) #set seed to generate a random sample
-n <- 1000000    # number of Items
+set.seed(42) 
+n <- 1000000  
 knapsack_objects <- data.frame( w=sample(1:4000, size = n, replace = TRUE),
                                 v=runif(n = n, 0, 10000))
-# time taken to run on n= 16 and W= 2000
 system.time(greedy_result <- greedy_knapsack(x = knapsack_objects[1:12,], W = 2000))
 ```
 
@@ -139,7 +139,3 @@ microbenchmark(
 Its is platform dependent and only work with `MacOS/Linux or Windows`.
 
 
-"He who gives up [code] safety for [code] speed deserves neither."
-([via](https://github.com/rjkhan/RCourse-lab6)) or you can create an issue 
-
-- any issue email us: `rabnawazjansher8@gmail.com`
