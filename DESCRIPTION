@@ -12,7 +12,7 @@ r_github_packages:
   - hadley/lineprof
 Depends: R (>= 3.1.0)
 Imports:
-    utils, combinat, parallel, microbenchmark
+    utils, combinat, parallel, microbenchmark, prettydoc
 Suggests:
     testthat, knitr, rmarkdown
 VignetteBuilder: knitr
